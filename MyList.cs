@@ -67,8 +67,8 @@ namespace laba12._1
         public MyList(int size)
         {
             if (size <= 0) throw new Exception("size less zero");
-            beg = MakeRandomData();
-            end = beg;
+            beg = null;
+            end = null; 
             for (int i = 0; i < size; i++)
             {
                 T newItem = MakeRandomItem();
@@ -181,6 +181,20 @@ namespace laba12._1
 
             current.Next = newItem;
             count++;
+        }
+        public MyList<T> Clone()
+        {
+            MyList<T> newList = new MyList<T>();
+
+            Point<T>? current = beg;
+            while (current != null)
+            {
+                T newData = (T)current.Data.Clone();
+                newList.AddToEnd(newData);
+                current = current.Next;
+            }
+
+            return newList;
         }
 
 
