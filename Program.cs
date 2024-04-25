@@ -10,17 +10,16 @@ namespace laba12._1
             Console.WriteLine("1. Сформировать двунаправленный список");
             Console.WriteLine("2. Распечатать полученный список");
             Console.WriteLine("3. Выполнить обработку списка в соответствии с заданием");
-            Console.WriteLine("4. Распечатать полученный список");
-            Console.WriteLine("5. Выполнить глубокое клонирование списка");
-            Console.WriteLine("6. Удалить список из памяти");
-            Console.WriteLine("Выберите действие (1-6):");
+            Console.WriteLine("4. Выполнить глубокое клонирование списка");
+            Console.WriteLine("5. Удалить список из памяти");
+            Console.WriteLine("Выберите действие (1-5):");
         }
         static void Main(string[] args)    
         {
             MyList<Musicalinstrument>? list = null;
             int answer = 0;
 
-            while (answer != 6)
+            while (answer != 5)
             {
                 try
                 {
@@ -82,14 +81,12 @@ namespace laba12._1
                                     break;
                             }
                             break;
+                        
                         case 4:
-                            list.PrintList();
-                            break;
-                        case 5:
                             MyList<Musicalinstrument> clonedList = list.Clone();
                             Console.WriteLine("Список склонирован.");
                             break;
-                        case 6:
+                        case 5:
                             list = null;
                             Console.WriteLine("Список удален из памяти.");
                             break;
