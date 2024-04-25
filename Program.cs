@@ -15,7 +15,7 @@ namespace laba12._1
             Console.WriteLine("6. Удалить список из памяти");
             Console.WriteLine("Выберите действие (1-6):");
         }
-        static void Main(string[] args)
+        static void Main(string[] args)    
         {
             MyList<Musicalinstrument>? list = null;
             int answer = 0;
