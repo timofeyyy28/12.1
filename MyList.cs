@@ -112,75 +112,110 @@ namespace laba12._1
             }
             return null;
         }
-        public bool RemoveItem( T item)
+        public bool RemoveItem(T item)
         {
-            if (beg == null) 
+            if (beg == null)
                 throw new Exception("the empty list");
+
             Point<T>? pos = FindItem(item);
             if (pos == null) return false;
+
             count--;
-            if (beg == end)
-            {
-                beg = end = null;
-                return true;
-            }
+
             if (pos.Pred == null)
             {
                 beg = beg?.Next;
-                beg.Pred = null;
-                return true;          
-            }
-            if (pos.Next == null)
-            {
-                end = end.Pred;
-                end.Next = null;
+                if (beg != null) beg.Pred = null;
+                else end = null;
                 return true;
             }
-            Point<T> next = pos.Next;
-            Point<T> pred = pos.Pred;
-            pos.Next.Pred = pred;
-            pos.Pred.Next = next;
-            return true;         
+
+            if (pos.Next == null)
+            {
+                end = end?.Pred;
+                if (end != null) end.Next = null;
+                else beg = null;
+                return true;
+            }
+
+            Point<T>? next = pos.Next;
+            Point<T>? pred = pos.Pred;
+            pred.Next = next;
+            next.Pred = pred;
+
+            return true;
         }
-        public void RemoveLastItemWithFieldValue(T value)
+        public void RemoveLastItemWithFieldValue(T item)
         {
             Point<T>? current = end;
+
             while (current != null)
             {
-                if (current.Data.Equals(value))
+                if (current.Data.Equals(item))
                 {
-                    RemoveItem(current.Data);
+                    count--;
+
+                    if (current.Pred == null) 
+                    {
+                        beg = beg?.Next;
+                        if (beg != null) beg.Pred = null;
+                        else end = null;
+                        return;
+                    }
+
+                    if (current.Next == null) 
+                    {
+                        end = end?.Pred;
+                        if (end != null) end.Next = null;
+                        else beg = null;
+                        return;
+                    }
+
+                    Point<T>? pred = current.Pred;
+                    Point<T>? next = current.Next;
+                    pred.Next = next;
+                    next.Pred = pred;
                     return;
                 }
+
                 current = current.Pred;
             }
-            throw new Exception($"Элемент с именем {value} не найден");
+
+            throw new Exception($"Элемент с информационным полем {item} не найден.");
         }
-        public void AddAfterItem(T afterValue, T newValue)
+        public void AddAfterItem(T afterItem, T newItem)
         {
-            Point<T>? current = FindItem(afterValue);
-            if (current == null)
+            Point<T>? current = beg;
+
+            while (current != null)
             {
-                throw new Exception($"Элемент с именем {afterValue} не найден");
+                if (current.Data.Equals(afterItem))
+                {
+                    Point<T> newItemNode = new Point<T>(newItem);
+                    count++;
+
+                    if (current.Next != null)
+                    {
+                        Point<T>? nextNode = current.Next;
+                        current.Next = newItemNode;
+                        newItemNode.Pred = current;
+                        newItemNode.Next = nextNode;
+                        nextNode.Pred = newItemNode;
+                    }
+                    else
+                    {
+                        current.Next = newItemNode;
+                        newItemNode.Pred = current;
+                        end = newItemNode;
+                    }
+
+                    return;
+                }
+
+                current = current.Next;
             }
 
-            T newData = (T)newValue.Clone();
-            Point<T> newItem = new Point<T>(newData);
-
-            newItem.Next = current.Next;
-            newItem.Pred = current;
-
-            if (current.Next != null)
-            {
-                current.Next.Pred = newItem;
-            }
-            else
-            {
-                end = newItem;
-            }
-
-            current.Next = newItem;
-            count++;
+            throw new Exception($"Элемент с информационным полем {afterItem} не найден.");
         }
         public MyList<T> Clone()
         {

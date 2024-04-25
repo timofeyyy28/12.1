@@ -36,32 +36,43 @@ namespace laba12._1
                             Console.WriteLine("Список создан.");
                             break;
                         case 2:
-                            Console.Clear();
+                           
                             list.PrintList();
                             Console.WriteLine("Список распечатан");
                             break;
                         case 3:
                             Console.WriteLine("1. Удалить из списка последний элемент с заданным информационным полем");
                             Console.WriteLine("2. Добавить в список элемент после элемента с заданным информационным полем");
-                            int subAnswer = int.Parse(Console.ReadLine());
+                            int choice = int.Parse(Console.ReadLine());
 
-                            switch (subAnswer)
+                            switch (choice)
                             {
                                 case 1:
-                                    Console.WriteLine("Введите значение элемента для удаления:");
-                                    Musicalinstrument valueToRemove = new Musicalinstrument();
-                                    valueToRemove.RandomInit();
-                                    list.RemoveLastItemWithFieldValue(valueToRemove);
+                                    Console.WriteLine("Введите имя музыкального инструмента для удаления:");
+                                    string name = Console.ReadLine();
+
+                                    Console.WriteLine("Введите ID музыкального инструмента для удаления:");
+                                    int idNumber;
+                                    while (!int.TryParse(Console.ReadLine(), out idNumber))
+                                    {
+                                        Console.WriteLine("Неверный формат ID. Пожалуйста, введите целое число:");
+                                    }
+
+                                    IdNumber id = new IdNumber(idNumber);
+                                    Musicalinstrument itemToRemove = new Musicalinstrument(name, id.number);
+
+                                    list.RemoveLastItemWithFieldValue(itemToRemove);
                                     Console.WriteLine("Элемент удален.");
                                     break;
                                 case 2:
                                     Console.WriteLine("Введите значение элемента, после которого нужно добавить новый элемент:");
+
                                     Musicalinstrument afterValue = new Musicalinstrument();
-                                    afterValue.RandomInit();
+                                    afterValue.Init(); 
 
                                     Console.WriteLine("Введите новое значение для добавления:");
                                     Musicalinstrument newValue = new Musicalinstrument();
-                                    newValue.RandomInit();
+                                    newValue.Init(); 
 
                                     list.AddAfterItem(afterValue, newValue);
                                     Console.WriteLine("Элемент добавлен.");
