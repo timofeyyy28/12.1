@@ -42,7 +42,7 @@ namespace laba12._1
                     case 2:
                         if (list == null)
                         {
-                            Console.WriteLine("Список еще не был создан. Пожалуйста, выберите пункт 1 для создания списка.");
+                            Console.WriteLine("Список не существует. Пожалуйста, выберите пункт 1 для создания списка.");
                         }
                         else if (list.Count == 0)
                         {
@@ -113,7 +113,7 @@ namespace laba12._1
                                     case 5:
                                         try
                                         {
-                                            MyList<Musicalinstrument>.lists.RemoveAt(curN - 1);
+                                            MyList<Musicalinstrument>.lists.Remove(list);
                                             list = null;
                                             Console.WriteLine("Удаление произведено");
                                         }

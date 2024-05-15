@@ -10,8 +10,8 @@ namespace laba12._1
 {
     internal class MyList<T> where T: IInit, ICloneable, new()
     {
-        Point<T>? beg = null;
-        Point<T>? end = null;
+        public Point<T>? beg;
+        public Point<T>? end;
         int count = 0;
         public int Count => count;
         public static List<MyList<T>> lists = new List<MyList<T>>();
