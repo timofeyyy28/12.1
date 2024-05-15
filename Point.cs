@@ -28,10 +28,10 @@ namespace laba12._1
         {
             return Data == null ? "" : Data.ToString();
         }
-        public override int GetHashCode()
-        {
-            return Data == null? 0 : Data.GetHashCode();
-        }
+        //public override int GetHashCode()
+        //{
+        //    return Data == null? 0 : Data.GetHashCode();
+        //}
 
 
     }

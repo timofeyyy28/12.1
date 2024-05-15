@@ -15,13 +15,13 @@ namespace laba12._1
         int count = 0;
         public int Count => count;
 
-        public Point<T> MakeRandomData()
+        public static Point<T> MakeRandomData()
         {
             T data = new T();
             data.RandomInit();
             return new Point<T>(data);
         }
-        public T MakeRandomItem()
+        public static T MakeRandomItem()
         {
             T data = new T();
             data.RandomInit();
