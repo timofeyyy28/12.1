@@ -1,5 +1,6 @@
-﻿using System;
+﻿
 using ClassLibraryLabor10;
+
 
 namespace laba12._1
 {
@@ -16,7 +17,7 @@ namespace laba12._1
         {
             MyList<Musicalinstrument>? list = null;
             int answer = 0;
-
+            int curN = 0;
             while (answer != 3)
             {
                 PrintMenu();
@@ -112,7 +113,7 @@ namespace laba12._1
                                     case 5:
                                         try
                                         {
-                                            
+                                            MyList<Musicalinstrument>.lists.RemoveAt(curN - 1);
                                             list = null;
                                             Console.WriteLine("Удаление произведено");
                                         }
