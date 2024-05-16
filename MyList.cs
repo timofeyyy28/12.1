@@ -15,18 +15,7 @@ namespace laba12._1
         int count = 0;
         public int Count => count;
         public static List<MyList<T>> lists = new List<MyList<T>>();
-        public static Point<T> MakeRandomData()
-        {
-            T data = new T();
-            data.RandomInit();
-            return new Point<T>(data);
-        }
-        public static T MakeRandomItem()
-        {
-            T data = new T();
-            data.RandomInit();
-            return data;
-        }
+        
         public void AddToBegin(T item)
         {
             T newData = (T)item.Clone();
@@ -71,7 +60,7 @@ namespace laba12._1
             end = null; 
             for (int i = 0; i < size; i++)
             {
-                T newItem = MakeRandomItem();
+                T newItem = Point<T>.MakeRandomItem();
                 AddToEnd(newItem);
             }
             count = size;

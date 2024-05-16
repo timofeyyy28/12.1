@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibraryLabor10;
 
 namespace laba12._1
 {
-    internal class Point<T>
+    public  class Point<T> where T: IInit, new()
     {
         public T Data { get; set; }
         public Point<T>? Next { get; set; }
         public Point<T>? Pred { get; set; }
-
+        public static Point<T> MakeRandomData()
+        {
+            T data = new T();
+            data.RandomInit();
+            return new Point<T>(data);
+        }
+        public static T MakeRandomItem()
+        {
+            T data = new T();
+            data.RandomInit();
+            return data;
+        }
         public Point()
         {
             this.Data = default(T);
@@ -28,10 +40,7 @@ namespace laba12._1
         {
             return Data == null ? "" : Data.ToString();
         }
-        //public override int GetHashCode()
-        //{
-        //    return Data == null? 0 : Data.GetHashCode();
-        //}
+        
 
 
     }
