@@ -1,5 +1,4 @@
-﻿
-using ClassLibraryLabor10;
+﻿using ClassLibraryLabor10;
 
 
 namespace laba12._1
@@ -17,7 +16,7 @@ namespace laba12._1
         {
             MyList<Musicalinstrument>? list = null;
             int answer = 0;
-            int curN = 0;
+            
             while (answer != 3)
             {
                 PrintMenu();
