@@ -1,5 +1,5 @@
 ﻿using ClassLibraryLabor10;
-
+using System;
 
 namespace laba12._1
 {
@@ -16,11 +16,15 @@ namespace laba12._1
         {
             MyList<Musicalinstrument>? list = null;
             int answer = 0;
-            
+
             while (answer != 3)
             {
                 PrintMenu();
-                answer = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out answer))
+                {
+                    Console.WriteLine("Неверный ввод. Повторите попытку.");
+                    continue;
+                }
 
                 switch (answer)
                 {
@@ -28,13 +32,18 @@ namespace laba12._1
                         if (list == null)
                         {
                             Console.WriteLine("Введите размер коллекции:");
-                            int size = int.Parse(Console.ReadLine());
+                            int size;
+                            if (!int.TryParse(Console.ReadLine(), out size) || size <= 0)
+                            {
+                                Console.WriteLine("Некорректный размер коллекции. Повторите ввод.");
+                                break;
+                            }
                             list = new MyList<Musicalinstrument>(size);
                             Console.WriteLine("Список создан.");
                         }
                         else
                         {
-                            Console.WriteLine("Список уже существует. Пожалуйста, выберите другую опцию.");
+                            Console.WriteLine("Список уже существует. Выберите другую опцию.");
                         }
                         break;
 
@@ -60,7 +69,11 @@ namespace laba12._1
                                 Console.WriteLine("4. Распечатать полученный список");
                                 Console.WriteLine("5. Удалить список из памяти");
                                 Console.WriteLine("6. Вернуться в главное меню");
-                                subAnswer = int.Parse(Console.ReadLine());
+                                if (!int.TryParse(Console.ReadLine(), out subAnswer))
+                                {
+                                    Console.WriteLine("Неверный ввод. Повторите попытку.");
+                                    continue;
+                                }
 
                                 switch (subAnswer)
                                 {
@@ -112,7 +125,6 @@ namespace laba12._1
                                     case 5:
                                         try
                                         {
-                                            MyList<Musicalinstrument>.lists.Remove(list);
                                             list = null;
                                             Console.WriteLine("Удаление произведено");
                                         }
@@ -131,8 +143,6 @@ namespace laba12._1
                             }
                         }
                         break;
-
-                    
 
                     default:
                         Console.WriteLine("Неверный ввод. Повторите попытку.");

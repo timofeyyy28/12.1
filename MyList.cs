@@ -14,7 +14,7 @@ namespace laba12._1
         public Point<T>? end;
         int count = 0;
         public int Count => count;
-        public static List<MyList<T>> lists = new List<MyList<T>>();
+       
         
         public void AddToBegin(T item)
         {
