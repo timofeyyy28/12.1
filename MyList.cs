@@ -8,7 +8,7 @@ using ClassLibraryLabor10;
 
 namespace laba12._1
 {
-    internal class MyList<T> where T: IInit, ICloneable, new()
+    public class MyList<T> where T: IInit, ICloneable, new()
     {
         public Point<T>? beg;
         public Point<T>? end;
@@ -219,6 +219,22 @@ namespace laba12._1
             }
 
             return newList;
+        }
+        public void Clear()
+        {
+            Point<T>? current = beg;
+            while (current != null)
+            {
+                Point<T>? temp = current;
+                current = current.Next;
+                temp.Data = default(T);
+                temp.Next = null;
+                temp.Pred = null;
+            }
+            beg = null;
+            end = null;
+            count = 0;
+           
         }
 
 

@@ -125,6 +125,7 @@ namespace laba12._1
                                     case 5:
                                         try
                                         {
+                                            list.Clear();
                                             list = null;
                                             Console.WriteLine("Удаление произведено");
                                         }
